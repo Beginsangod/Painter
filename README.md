@@ -5,13 +5,13 @@ Painter esr un logiciel de dessin à projection écrit en python 3 utilisant Ope
 
 - **Dessin 2D** avec transformations planaires
 
--**Dessin 3D** avec transformations spaciales
+- **Dessin 3D** avec transformations spaciales
 
--**Sauvegarde de dessin** 
+- **Sauvegarde de dessin** 
 
--**Coloration** coloration des dessins par la prise en charge des couleurs au format RVB
+- **Coloration** coloration des dessins par la prise en charge des couleurs au format RVB
 
--**outils de dessin** gomme, pipe pinceau, etc 
+- **outils de dessin** gomme, pipe pinceau, etc 
 
 # Arborescence
 
