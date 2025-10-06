@@ -1,5 +1,5 @@
 # Painter
-Painter esr un logiciel de dessin à projection écrit en python 3 utilisant OpenGL pour le rendu. Il prend en charge les dessins 2D et 3D.
+Painter est un logiciel de dessin à projection écrit en Python 3 utilisant OpenGL pour le rendu. Il prend en charge les dessins 2D et 3D.
  
 ## Fonctionnalités
 
@@ -15,9 +15,11 @@ Painter esr un logiciel de dessin à projection écrit en python 3 utilisant Ope
 
 # Arborescence
 
-painter/
+|painter/
+
 │
 ├─ 📄 main.py   # fichier principal
+
 │
 ├─ 📁 Sources/  
 │  ├─ _init_.py
@@ -60,9 +62,9 @@ painter/
 
 ### Prérequis
 
--**Python** : Version 3 
--**PyQt6**: Module d'interface graphique
--**OpenGL**: Module de rendu 3D
+- **Python** : Version 3 
+- **PyQt6**: Module d'interface graphique
+- **OpenGL**: Module de rendu 3D
 
 ### Installation
 
