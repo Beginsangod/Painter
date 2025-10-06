@@ -15,7 +15,7 @@ Painter est un logiciel de dessin à projection écrit en Python 3 utilisant Ope
 
 # Arborescence
 
-- <<nav!>>├─ painter/<<!/nav>>
+- <<!nav>>├─ painter<<!/nav>>/
  - | ├─ 📄 main.py    # fichier principal
  - | ├─ 📁 Sources/
   - | ├─ _init_.py
