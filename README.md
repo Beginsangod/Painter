@@ -15,42 +15,31 @@ Painter est un logiciel de dessin à projection écrit en Python 3 utilisant Ope
 
 # Arborescence
 
-├─ painter/\
--  ├─ 📄 main.py    # fichier principal\
-- ├─ 📁 Sources/\
-- | ├─ _init_.py\
-- | ├─ core/     # Coeur de l'application\
-- | | ├─ _init_.py  
-- | | ├─ app_context.py  
-  | | ├─ settings.py  
-  | | └─ utils.py  
-  | | ├─ gui/      # Outils d'interface graphique  
-  | | | | ├─ _init_.py    
-  | | | | ├─ main_window.py  
-  | | | | ├─ toolbar.py  
-  | | | | └─ menus.py  
-  │
-  |─ opengl/       # importations des modules opengl
-   ├─ _init_.py
-   ├─ gl_widget.py
-   ├─ camera.py
-   ├─ shaders.py
-   └─ primitives.py
-  |
-  └─ drawing/      # outils de dessin et formes 
-   ├─ _init_.py
-   ├─ tools.py
-   ├─ shapes.py
-   └─ projection.py
-  │
-  ├─ 📁 supplement/    # ressources supplémentaires et feuilles de styles 
-   ├─ icons/
-   ├─ shaders/
-   └─ styles
-  │
-  ├─ 📄 README.md
-  ├─ 📄 LICENSE
-  └─ 📄 .gitignore
+├─ painter\  
+|├─ 📄 main.py    # fichier principal  
+|├─ 📁 Sources\   
+||├─ core\     # Coeur de l'application  
+|||├─ Gui\      
+||||├─ main_window.py  
+||||├─ toolbar.py  
+||||└─ menus.py  
+|||├─ motor_2D\  
+||||├─ drawing.py  
+||||└─ init_2D.py   
+|||├─ motor_3D\  
+||||├─ init_3D.py  
+||||├─ modeling.py  
+||||├─ projection.py    
+||||└─ shaders.py   
+|||└─ Sauvegarde\
+||||├─ file_editing.py  
+||||├─ data_file.py  
+||||├─ Data_file.json  
+||||└─ Gest_storage.py
+||├─ Assets\     
+├─ 📄 README.md  
+├─ 📄 LICENSE  
+└─ 📄 .gitignore  
 
 
 ## Installation et utilisation
