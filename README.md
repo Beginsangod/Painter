@@ -31,11 +31,11 @@ Painter est un logiciel de dessin à projection écrit en Python 3 utilisant Ope
 ||||├─ modeling.py  
 ||||├─ projection.py    
 ||||└─ shaders.py   
-|||└─ Sauvegarde\
+|||└─ Sauvegarde\  
 ||||├─ file_editing.py  
 ||||├─ data_file.py  
 ||||├─ Data_file.json  
-||||└─ Gest_storage.py
+||||└─ Gest_storage.py  
 ||├─ Assets\     
 ├─ 📄 README.md  
 ├─ 📄 LICENSE  
