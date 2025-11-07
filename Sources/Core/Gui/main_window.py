@@ -146,10 +146,6 @@ class MainWindow(QtW.QMainWindow):
         
         
 
-app = QtW.QApplication([])
-window = MainWindow()
-window.show()
-app.exec()
 
 
 
