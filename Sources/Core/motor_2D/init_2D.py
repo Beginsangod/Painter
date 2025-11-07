@@ -4,14 +4,15 @@ from PySide6.QtGui import QIcon
 from PySide6.QtCore import Qt
 import sys
 sys.path.insert(0,'C:/Users/EG/Documents/Painter/Sources/Core/Gui')
-from Sources.Core.Gui.menus import Menu
 from Sources.Core.Gui.toolbar import ToolBar
+from Sources.Core.Gui.menus import Menu 
 from Sources.Core.motor_2D.Drawing import DrawingArea
 
 
 class Painter2D(QMainWindow):
-    def __init__(self, mode_=1):
+    def __init__(self,main_window, mode_=1):
         super().__init__()
+        self.main_window = main_window #ici passage par reference
         self.setWindowTitle("Painter")
         self.resize(900,600)
         self.setWindowIcon(QIcon("Sources/Assets/favicon.ico"))
@@ -23,7 +24,7 @@ class Painter2D(QMainWindow):
         container = QVBoxLayout() 
         container.setSpacing(10)
 
-        menu = Menu()
+        menu = Menu(self.main_window)
 
         work_space = QWidget()
         work_space_layout = QHBoxLayout()

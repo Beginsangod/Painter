@@ -1,12 +1,13 @@
 import PySide6.QtWidgets as QtW
 import PySide6.QtGui as QtG
 import PySide6.QtCore as QtC
-from Sources.Core.motor_2D.init_2D import Painter2D
+from Sources.Core.Gui.menus import Menu
 import sys
 
 class MainWindow(QtW.QMainWindow):
     def __init__(self):
         super().__init__()
+        self.menu = Menu(self)# toujours pour la ref
         self.setWindowTitle("Painter")
         self.resize(900,600)
         self.setWindowIcon(QtG.QIcon("Sources/Assets/favicon.ico"))
@@ -16,8 +17,9 @@ class MainWindow(QtW.QMainWindow):
         self.setCentralWidget(self.stack)
 
         # declaration de la fenetre principale et des fenetre 2D et 3D
+        from Sources.Core.motor_2D.init_2D import Painter2D
         self.home_page = QtW.QWidget()
-        self.drawing2d_page = Painter2D()
+        self.drawing2d_page = Painter2D(self)#pour la ref
         self.drawing3d_page = QtW.QWidget()
 
         #Ajustement des fenetres dans le stackedWidget
@@ -84,7 +86,12 @@ class MainWindow(QtW.QMainWindow):
         font-size: 16px;             /* taille du texte */
         font-weight: bold; 
         font-family: Segoe UI
-        }""") 
+        }
+        QPushButton:hover{
+                background-color: #505050;
+        }QPushButton:pressed{
+                background-color: #007acc;
+         }""") 
         self.button_3d.setGraphicsEffect(ombre)
         self.button_3d.clicked.connect(self.open_3d_mode) # permet de rendre le bouton clickable et le connecter a une fonction
         
@@ -98,7 +105,13 @@ class MainWindow(QtW.QMainWindow):
         font-size: 16px;             /* taille du texte */
         font-weight: bold; 
         font-family: Segoe UI
-        }""") 
+        }
+        QPushButton:hover{
+                background-color: #505050;
+            }
+        QPushButton:pressed{
+                background-color: #007acc;
+            }""") 
         self.button_2d.setGraphicsEffect(ombre)
         self.button_2d.clicked.connect(self.open_2d_mode)
 
