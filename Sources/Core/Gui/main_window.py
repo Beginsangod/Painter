@@ -9,6 +9,7 @@ class MainWindow(QtW.QMainWindow):
         super().__init__()
         self.setWindowTitle("Painter")
         self.resize(900,600)
+        self.setWindowIcon(QtG.QIcon("Sources/Assets/favicon.ico"))
 
         #declaration du widget qui contient toute les fenetres 
         self.stack = QtW.QStackedWidget()
@@ -52,7 +53,7 @@ class MainWindow(QtW.QMainWindow):
         label_project = QtW.QLabel("Projects")
         label_project.setStyleSheet("font-size: 20px; color: white; font-weight: bold; font-family: Segoe UI ")
         label_logo2 = QtW.QLabel()
-        pixmap = QtG.QPixmap("logo.jpg")
+        pixmap = QtG.QPixmap("Sources\Assets\logo.jpg")
         label_logo2.setPixmap(pixmap)
         pixmap_redim = pixmap.scaled(13, 13, QtC.Qt.KeepAspectRatio, QtC.Qt.SmoothTransformation)
         label_logo2.setPixmap(pixmap_redim)
