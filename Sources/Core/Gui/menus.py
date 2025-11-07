@@ -13,7 +13,7 @@ class Menu(QWidget):
 
         #Nom app et Logo
         logo = QLabel()
-        pixmap = QPixmap("Sources\Assets\logo.jpg")
+        pixmap = QPixmap("Sources.Assets.logo.jpg")
         pixmap_redim = pixmap.scaled(20, 20, Qt.KeepAspectRatio, Qt.SmoothTransformation)
         logo.setPixmap(pixmap_redim)
         label_logo = QLabel("Painter")

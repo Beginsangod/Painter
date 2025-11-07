@@ -4,9 +4,9 @@ from PySide6.QtGui import QIcon
 from PySide6.QtCore import Qt
 import sys
 sys.path.insert(0,'C:/Users/EG/Documents/Painter/Sources/Core/Gui')
-from menus import Menu
-from toolbar import ToolBar
-from Drawing import DrawingArea
+from Sources.Core.Gui.menus import Menu
+from Sources.Core.Gui.toolbar import ToolBar
+from Sources.Core.motor_2D.Drawing import DrawingArea
 
 
 class Painter2D(QMainWindow):
@@ -44,7 +44,3 @@ class Painter2D(QMainWindow):
         painter2d.setLayout(container)
         self.setCentralWidget(painter2d)
 
-app2d = QApplication(sys.argv)
-window = Painter2D()
-window.show()
-app2d.exec()

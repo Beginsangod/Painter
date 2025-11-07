@@ -1,7 +1,7 @@
 import PySide6.QtWidgets as QtW
 import PySide6.QtGui as QtG
 import PySide6.QtCore as QtC
-
+from Sources.Core.motor_2D.init_2D import Painter2D
 import sys
 
 class MainWindow(QtW.QMainWindow):
@@ -17,7 +17,7 @@ class MainWindow(QtW.QMainWindow):
 
         # declaration de la fenetre principale et des fenetre 2D et 3D
         self.home_page = QtW.QWidget()
-        self.drawing2d_page = Drawing2DPage()
+        self.drawing2d_page = Painter2D()
         self.drawing3d_page = QtW.QWidget()
 
         #Ajustement des fenetres dans le stackedWidget
@@ -53,7 +53,7 @@ class MainWindow(QtW.QMainWindow):
         label_project = QtW.QLabel("Projects")
         label_project.setStyleSheet("font-size: 20px; color: white; font-weight: bold; font-family: Segoe UI ")
         label_logo2 = QtW.QLabel()
-        pixmap = QtG.QPixmap("Sources\Assets\logo.jpg")
+        pixmap = QtG.QPixmap("Sources.Assets.logo.jpg")
         label_logo2.setPixmap(pixmap)
         pixmap_redim = pixmap.scaled(13, 13, QtC.Qt.KeepAspectRatio, QtC.Qt.SmoothTransformation)
         label_logo2.setPixmap(pixmap_redim)
