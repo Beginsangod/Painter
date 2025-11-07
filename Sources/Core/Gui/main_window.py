@@ -9,6 +9,7 @@ class MainWindow(QtW.QMainWindow):
         super().__init__()
         self.setWindowTitle("Painter")
         self.resize(900,600)
+        self.setWindowIcon(QtG.QIcon("Sources/Assets/favicon.ico"))
 
         # declaration de la fenetre principale
         Main_Widget = QtW.QWidget()
