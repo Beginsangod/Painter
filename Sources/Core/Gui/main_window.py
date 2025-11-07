@@ -2,7 +2,7 @@ import PySide6.QtWidgets as QtW
 import PySide6.QtGui as QtG
 import PySide6.QtCore as QtC
 
-import sys 
+import sys
 
 class MainWindow(QtW.QMainWindow):
     def __init__(self):
@@ -10,13 +10,24 @@ class MainWindow(QtW.QMainWindow):
         self.setWindowTitle("Painter")
         self.resize(900,600)
 
-        # declaration de la fenetre principale
-        Main_Widget = QtW.QWidget()
+        #declaration du widget qui contient toute les fenetres 
+        self.stack = QtW.QStackedWidget()
+        self.setCentralWidget(self.stack)
+
+        # declaration de la fenetre principale et des fenetre 2D et 3D
+        self.home_page = QtW.QWidget()
+        self.drawing2d_page = Drawing2DPage()
+        self.drawing3d_page = QtW.QWidget()
+
+        #Ajustement des fenetres dans le stackedWidget
+        self.stack.addWidget(self.home_page)
+        self.stack.addWidget(self.drawing2d_page)
+        self.stack.addWidget(self.drawing3d_page)
 
         # declaration des differents layout pour structurer le visuel
-        main_layout = QtW.QVBoxLayout()
-        header_layout = QtW.QHBoxLayout()
-        welcome_layout = QtW.QVBoxLayout()
+        self.main_layout = QtW.QVBoxLayout()
+        self.header_layout = QtW.QHBoxLayout()
+        self.welcome_layout = QtW.QVBoxLayout()
         button_layout = QtW.QHBoxLayout()
         project_layout = QtW.QVBoxLayout()
 
@@ -45,10 +56,10 @@ class MainWindow(QtW.QMainWindow):
         label_logo2.setPixmap(pixmap)
         pixmap_redim = pixmap.scaled(13, 13, QtC.Qt.KeepAspectRatio, QtC.Qt.SmoothTransformation)
         label_logo2.setPixmap(pixmap_redim)
-        line = QtW.QFrame()
+        self.line = QtW.QFrame()
         linedown = QtW.QFrame()
-        line.setFrameShape(QtW.QFrame.HLine)
-        line.setStyleSheet(""" QFrame {
+        self.line.setFrameShape(QtW.QFrame.HLine)
+        self.line.setStyleSheet(""" QFrame {
         color: #C1BFB1;  
         border: none;
         background-color: #C1BFB1;
@@ -91,41 +102,44 @@ class MainWindow(QtW.QMainWindow):
         self.button_2d.clicked.connect(self.open_2d_mode)
 
         # structuration du visuelle 
-        self.setCentralWidget(Main_Widget)
         self.setStyleSheet("background-color: #121212;")
-        header_layout.addWidget(label_logo2)
-        header_layout.addWidget(label_logo)
-        header_layout.addStretch()
-        main_layout.addLayout(header_layout)
-        main_layout.addWidget(line)
-        main_layout.addStretch()
-        welcome_layout.addWidget(label_welcome)
-        welcome_layout.addWidget(label_slogan)
-        welcome_layout.setAlignment(QtC.Qt.AlignCenter)
-        welcome_layout.addStretch()
-        main_layout.addLayout(welcome_layout)
+        self.header_layout.addWidget(label_logo2)
+        self.header_layout.addWidget(label_logo)
+        self.header_layout.addStretch()
+        self.main_layout.addLayout(self.header_layout)
+        self.main_layout.addWidget(self.line)
+        self.main_layout.addStretch()
+        self.welcome_layout.addWidget(label_welcome)
+        self.welcome_layout.addWidget(label_slogan)
+        self.welcome_layout.setAlignment(QtC.Qt.AlignCenter)
+        self.welcome_layout.addStretch()
+        self.main_layout.addLayout(self.welcome_layout)
         button_layout.addWidget(self.button_2d)
         button_layout.addWidget(self.button_3d)
         button_layout.setAlignment(QtC.Qt.AlignCenter)
-        main_layout.addStretch()  
-        main_layout.addLayout(button_layout)
-        main_layout.addStretch() 
+        self.main_layout.addStretch()  
+        self.main_layout.addLayout(button_layout)
+        self.main_layout.addStretch() 
         project_layout.addWidget(label_project)
-        main_layout.addLayout(project_layout)
-        main_layout.addWidget(linedown)
-        main_layout.addStretch()
-        main_layout.addStretch()
-        main_layout.addStretch()
-        main_layout.addStretch()
-        main_layout.addStretch()
-        main_layout.addStretch()
-        main_layout.addStretch()
-        Main_Widget.setLayout(main_layout)
+        self.main_layout.addLayout(project_layout)
+        self.main_layout.addWidget(linedown)
+        self.main_layout.addStretch()
+        self.main_layout.addStretch()
+        self.main_layout.addStretch()
+        self.main_layout.addStretch()
+        self.main_layout.addStretch()
+        self.main_layout.addStretch()
+        self.main_layout.addStretch()
+        self.home_page.setLayout(self.main_layout)
+        self.stack.setCurrentWidget(self.home_page)
+
     def open_2d_mode(self):
          print("mode 2D ouvert")
+         self.stack.setCurrentWidget(self.drawing2d_page)
 
     def open_3d_mode(self):
-        print("mode 3D ouvert")
+         print("mode 3D ouvert")
+         self.stack.setCurrentWidget(self.drawing3d_page)
 
 
         
