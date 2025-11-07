@@ -54,11 +54,12 @@ class ToolBar(QWidget):
         self.setFixedWidth(60)  
 
     def init_2D(self):
+        icon_path = "Sources/Assets/boxicons-2.1.4/svg/solid/"
         if self.mode_work == 1:
             pencil = QPushButton()
-            pencil.setIcon(colorize_icon("Sources/Assets/boxicons-2.1.4/svg/solid/bxs-pencil.svg","white", 30))
+            pencil.setIcon(colorize_icon(icon_path + "bxs-pencil.svg","white", 30))
             eraser = QPushButton()
-            eraser.setIcon(colorize_icon("Sources/Assets/boxicons-2.1.4/svg/solid/bxs-eraser.svg","white", 30))
+            eraser.setIcon(colorize_icon(icon_path + "bxs-eraser.svg","white", 30))
             self.toolbox.addWidget(pencil)
             self.toolbox.addWidget(eraser)
             self.toolbox.addStretch()
