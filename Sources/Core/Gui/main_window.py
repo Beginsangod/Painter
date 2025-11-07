@@ -41,7 +41,7 @@ class MainWindow(QtW.QMainWindow):
         label_project = QtW.QLabel("Projects")
         label_project.setStyleSheet("font-size: 20px; color: white; font-weight: bold; font-family: Segoe UI ")
         label_logo2 = QtW.QLabel()
-        pixmap = QtG.QPixmap("logo.jpg")
+        pixmap = QtG.QPixmap("Sources\Assets\logo.jpg")
         label_logo2.setPixmap(pixmap)
         pixmap_redim = pixmap.scaled(13, 13, QtC.Qt.KeepAspectRatio, QtC.Qt.SmoothTransformation)
         label_logo2.setPixmap(pixmap_redim)
