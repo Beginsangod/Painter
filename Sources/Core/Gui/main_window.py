@@ -11,6 +11,16 @@ class MainWindow(QtW.QMainWindow):
         self.setWindowTitle("Painter")
         self.resize(900,600)
         self.setWindowIcon(QtG.QIcon("Sources/Assets/favicon.ico"))
+        # UI pour la page
+        gradient = QtG.QLinearGradient(0, 0, 0, self.height())
+        gradient.setColorAt(0.0, QtG.QColor("#1E1E1E"))  # haut
+        gradient.setColorAt(1.0, QtG.QColor("#16213E"))  # bas
+
+        palette = QtG.QPalette()
+        palette.setBrush(QtG.QPalette.Window, QtG.QBrush(gradient))
+        self.setAutoFillBackground(True)
+        self.setPalette(palette)
+
 
         #declaration du widget qui contient toute les fenetres 
         self.stack = QtW.QStackedWidget()
@@ -35,25 +45,25 @@ class MainWindow(QtW.QMainWindow):
         project_layout = QtW.QVBoxLayout()
 
         # pour des effets visuel
-        ombre = QtW.QGraphicsDropShadowEffect() 
-        ombre.setBlurRadius(15)   # flou de l'ombre
-        ombre.setXOffset(0)       # décalage horizontal
-        ombre.setYOffset(5)       # décalage vertical
-        ombre.setColor(QtC.Qt.white)   # couleur de l'ombre
+        glow = QtW.QGraphicsDropShadowEffect()
+        glow.setBlurRadius(40)          # taille de la lumière
+        glow.setColor(QtG.QColor("#00ADB5"))  # couleur de la lumière
+        glow.setOffset(0, 0)            # centrée
 
         # declaration des labels et bouton (texte à afficher) et mise en page
          #labels
         label_welcome = QtW.QLabel("Welcome to Painter")
         label_welcome.setStyleSheet("font-size: 32px; color: white; font-weight: bold; font-family: Segoe UI ")
+        label_welcome.setGraphicsEffect(glow)
         label_welcome.setAlignment(QtC.Qt.AlignCenter)
         label_slogan = QtW.QLabel("Laissez votre créativité vous envahir")
-        label_slogan.setStyleSheet("font-size: 16px; color: white; font-weight: 600; font-family: Segoe UI ")
+        label_slogan.setStyleSheet("font-size: 16px; color: #CCCCCC; font-weight: 600; font-family: Segoe UI ")
         label_slogan.setAlignment(QtC.Qt.AlignCenter)
         label_logo = QtW.QLabel("Painter")
         label_logo.setStyleSheet("font-size: 10px; color: white; font-weight: bold; font-family: Segoe UI ")
         label_logo.setAlignment(QtC.Qt.AlignCenter)
         label_project = QtW.QLabel("Projects")
-        label_project.setStyleSheet("font-size: 20px; color: white; font-weight: bold; font-family: Segoe UI ")
+        label_project.setStyleSheet("font-size: 20px; color: #CCCCCC; font-weight: bold; font-family: Segoe UI ")
         label_logo2 = QtW.QLabel()
         pixmap = QtG.QPixmap("Sources/Assets/logo.jpg")
         label_logo2.setPixmap(pixmap)
@@ -79,7 +89,7 @@ class MainWindow(QtW.QMainWindow):
          #boutons
         self.button_3d = QtW.QPushButton("3D Modeling")
         self.button_3d.setStyleSheet(""" QPushButton { 
-        background-color: #C1BFB1;  /* couleur de fond */
+        background-color: #00ADB5;  /* couleur de fond */
         color: white;               /* couleur du texte */
         border-radius: 5px;        /* coins arrondis */
         padding: 40px 90px;         /* espace intérieur : vertical/horizontal */
@@ -88,17 +98,17 @@ class MainWindow(QtW.QMainWindow):
         font-family: Segoe UI
         }
         QPushButton:hover{
-                background-color: #505050;
+                background-color: #00CED1;
         }QPushButton:pressed{
                 background-color: #007acc;
          }""") 
-        self.button_3d.setGraphicsEffect(ombre)
+        self.button_3d.setGraphicsEffect(glow)
         self.button_3d.clicked.connect(self.open_3d_mode) # permet de rendre le bouton clickable et le connecter a une fonction
         
         
         self.button_2d = QtW.QPushButton("2D Modeling")
         self.button_2d.setStyleSheet(""" QPushButton {
-        background-color: #C1BFB1;  /* couleur de fond */
+        background-color: #00ADB5;  /* couleur de fond */
         color: white;               /* couleur du texte */
         border-radius: 5px;        /* coins arrondis */
         padding: 40px 90px;         /* espace intérieur : vertical/horizontal */
@@ -107,16 +117,16 @@ class MainWindow(QtW.QMainWindow):
         font-family: Segoe UI
         }
         QPushButton:hover{
-                background-color: #505050;
+                background-color:#00CED1;
             }
         QPushButton:pressed{
                 background-color: #007acc;
             }""") 
-        self.button_2d.setGraphicsEffect(ombre)
+        self.button_2d.setGraphicsEffect(glow)
         self.button_2d.clicked.connect(self.open_2d_mode)
 
         # structuration du visuelle 
-        self.setStyleSheet("background-color: #121212;")
+        
         self.header_layout.addWidget(label_logo2)
         self.header_layout.addWidget(label_logo)
         self.header_layout.addStretch()
