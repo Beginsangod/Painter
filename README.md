@@ -1,54 +1,68 @@
 # Painter
-Painter est un logiciel de dessin à projection écrit en Python 3 utilisant OpenGL pour le rendu. Il prend en charge les dessins 2D et 3D.
+Painter esr un logiciel de dessin à projection écrit en python 3 utilisant OpenGL pour le rendu. Il prend en charge les dessins 2D et 3D.
  
 ## Fonctionnalités
 
 - **Dessin 2D** avec transformations planaires
 
-- **Dessin 3D** avec transformations spaciales
+-**Dessin 3D** avec transformations spaciales
 
-- **Sauvegarde de dessin** 
+-**Sauvegarde de dessin** 
 
-- **Coloration** coloration des dessins par la prise en charge des couleurs au format RVB
+-**Coloration** coloration des dessins par la prise en charge des couleurs au format RVB
 
-- **outils de dessin** gomme, pipe pinceau, etc 
+-**outils de dessin** gomme, pipe pinceau, etc 
 
 # Arborescence
 
-├─ painter\  
-|├─ 📄 main.py    # fichier principal  
-|├─ 📁 Sources\   
-||├─ core\     # Coeur de l'application  
-|||├─ Gui\      
-||||├─ main_window.py  
-||||├─ toolbar.py  
-||||└─ menus.py  
-|||├─ motor_2D\  
-||||├─ drawing.py  
-||||└─ init_2D.py   
-|||├─ motor_3D\  
-||||├─ init_3D.py  
-||||├─ modeling.py  
-||||├─ projection.py    
-||||└─ shaders.py   
-|||└─ Sauvegarde\  
-||||├─ file_editing.py  
-||||├─ data_file.py  
-||||├─ Data_file.json  
-||||└─ Gest_storage.py  
-||├─ Assets\     
-├─ 📄 README.md  
-├─ 📄 LICENSE  
-└─ 📄 .gitignore  
+painter/
+│
+├─ 📄 main.py   # fichier principal
+│
+├─ 📁 Sources/  
+│  ├─ _init_.py
+│  ├─ core/     # Coeur de l'application
+│  │  ├─ _init_.py
+│  │  ├─ app_context.py
+│  │  ├─ settings.py
+│  │  └─ utils.py
+│  │
+│  ├─ gui/      # Outils d'interface graphique
+│  │  ├─ _init_.py
+│  │  ├─ main_window.py
+│  │  ├─ toolbar.py
+│  │  └─ menus.py
+│  │
+│  ├─ opengl/       # importations des modules opengl
+│  │  ├─ _init_.py
+│  │  ├─ gl_widget.py
+│  │  ├─ camera.py
+│  │  ├─ shaders.py
+│  │  └─ primitives.py
+│  │
+│  └─ drawing/      # outils de dessin et formes 
+│     ├─ _init_.py
+│     ├─ tools.py
+│     ├─ shapes.py
+│     └─ projection.py
+│
+├─ 📁 supplement/    # ressources supplémentaires et feuilles de styles 
+│  ├─ icons/
+│  ├─ shaders/
+│  └─ styles
+│
+├─ 📄 README.md
+├─ 📄 LICENSE
+└─ 📄 .gitignore
 
 
 ## Installation et utilisation
 
 ### Prérequis
 
-- **Python** : Version 3 
-- **PyQt6**: Module d'interface graphique
-- **OpenGL**: Module de rendu 3D
+-**Python** : Version 3 
+-**PyQt6**: Module d'interface graphique
+-**OpenGL**: Module de rendu 3D
 
 ### Installation
 
