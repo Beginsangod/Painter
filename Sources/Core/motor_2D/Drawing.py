@@ -30,17 +30,25 @@ class DrawingArea(QFrame):
         self.paths = []  # Liste des (QPainterPath, QPen)
         self.current_path = QPainterPath()
         self.current_pen = self.create_pen()
+        self.current_tool = None
 
     def create_pen(self):
         return QPen(self.pen_color, self.pen_width, Qt.SolidLine, Qt.RoundCap, Qt.RoundJoin)
 
     def mousePressEvent(self, event: QMouseEvent):
-        if event.button() == Qt.LeftButton:
+        if event.button() == Qt.LeftButton and self.current_tool in ["pencil","eraser"] :
             self.drawing = True
             self.last_point = event.position().toPoint()
             self.current_path = QPainterPath()
             self.current_path.moveTo(self.last_point)
-            self.current_pen = self.create_pen()
+            
+
+            # créer un stylo différent selon l'outils choisi
+
+            if self.current_tool == "eraser":
+                self.current_pen = QPen(QColor("white"), 15, Qt.SolidLine, Qt.RoundCap, Qt.RoundJoin)
+            else:
+                self.current_pen = self.create_pen()
 
     def mouseMoveEvent(self, event: QMouseEvent):
         if self.drawing:
@@ -79,3 +87,14 @@ class DrawingArea(QFrame):
         self.paths.clear()
         self.current_path = QPainterPath()
         self.update()
+
+    #pour savoir quel outils est sélectionné
+    def set_tool(self,tool_name):
+        self.current_tool = tool_name
+        if tool_name == "eraser":
+           self.setCursor(Qt.CrossCursor)
+        elif tool_name == "pencil":
+           self.setCursor(Qt.PointingHandCursor)
+        else:
+           self.unsetCursor()
+    

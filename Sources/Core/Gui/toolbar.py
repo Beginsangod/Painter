@@ -23,8 +23,9 @@ def colorize_icon(icon_path, color, size=24):
 
 
 class ToolBar(QWidget):
-    def __init__(self, mode=0):
+    def __init__(self,drawing_area, mode=0):
         super().__init__()
+        self.drawing_area = drawing_area
         self.toolbox = QVBoxLayout()
         self.toolbox.setContentsMargins(5, 5, 5, 5)
         self.toolbox.setSpacing(5)
@@ -56,12 +57,14 @@ class ToolBar(QWidget):
     def init_2D(self):
         icon_path = "Sources/Assets/boxicons-2.1.4/svg/solid/"
         if self.mode_work == 1:
-            pencil = QPushButton()
-            pencil.setIcon(colorize_icon(icon_path + "bxs-pencil.svg","white", 30))
-            eraser = QPushButton()
-            eraser.setIcon(colorize_icon(icon_path + "bxs-eraser.svg","white", 30))
-            self.toolbox.addWidget(pencil)
-            self.toolbox.addWidget(eraser)
+            self.pencil = QPushButton()
+            self.pencil.setIcon(colorize_icon(icon_path + "bxs-pencil.svg","white", 30))
+            self.pencil.clicked.connect(lambda: self.drawing_area.set_tool("pencil"))
+            self.eraser = QPushButton()
+            self.eraser.setIcon(colorize_icon(icon_path + "bxs-eraser.svg","white", 30))
+            self.eraser.clicked.connect(lambda: self.drawing_area.set_tool("eraser"))
+            self.toolbox.addWidget(self.pencil)
+            self.toolbox.addWidget(self.eraser)
             self.toolbox.addStretch()
             self.setLayout(self.toolbox)
         else:
