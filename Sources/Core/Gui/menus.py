@@ -3,7 +3,7 @@ from PySide6.QtGui import QPixmap
 from PySide6.QtCore import Qt
 
 '''
-Classe pour le menu du logiciel aue ce soit en 2D ou en 3D
+Classe pour le menu du logiciel que ce soit en 2D ou en 3D
 '''
 class Menu(QWidget):
     def __init__(self,main_window):
