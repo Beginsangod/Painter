@@ -3,7 +3,7 @@ from PySide6.QtGui import QPixmap
 from PySide6.QtCore import Qt
 
 '''
-Classe pour le menu du logiciel aue ce soit en 2D ou en 3D
+Classe pour le menu du logiciel que ce soit en 2D ou en 3D
 '''
 class Menu(QWidget):
     def __init__(self,main_window):
@@ -14,7 +14,7 @@ class Menu(QWidget):
 
         #Nom app et Logo
         logo = QLabel()
-        pixmap = QPixmap("Sources.Assets.logo.jpg")
+        pixmap = QPixmap("Sources/Assets/logo.jpg")
         pixmap_redim = pixmap.scaled(20, 20, Qt.KeepAspectRatio, Qt.SmoothTransformation)
         logo.setPixmap(pixmap_redim)
         label_logo = QLabel("Painter")
