@@ -1,22 +1,36 @@
 import PySide6.QtWidgets as QtW
 import PySide6.QtGui as QtG
 import PySide6.QtCore as QtC
-
-import sys 
+from Sources.Core.Gui.menus import Menu
+import sys
 
 class MainWindow(QtW.QMainWindow):
     def __init__(self):
         super().__init__()
+        self.menu = Menu(self)# toujours pour la ref
         self.setWindowTitle("Painter")
         self.resize(900,600)
+        self.setWindowIcon(QtG.QIcon("Sources/Assets/favicon.ico"))
 
-        # declaration de la fenetre principale
-        Main_Widget = QtW.QWidget()
+        #declaration du widget qui contient toute les fenetres 
+        self.stack = QtW.QStackedWidget()
+        self.setCentralWidget(self.stack)
+
+        # declaration de la fenetre principale et des fenetre 2D et 3D
+        from Sources.Core.motor_2D.init_2D import Painter2D
+        self.home_page = QtW.QWidget()
+        self.drawing2d_page = Painter2D(self)#pour la ref
+        self.drawing3d_page = QtW.QWidget()
+
+        #Ajustement des fenetres dans le stackedWidget
+        self.stack.addWidget(self.home_page)
+        self.stack.addWidget(self.drawing2d_page)
+        self.stack.addWidget(self.drawing3d_page)
 
         # declaration des differents layout pour structurer le visuel
-        main_layout = QtW.QVBoxLayout()
-        header_layout = QtW.QHBoxLayout()
-        welcome_layout = QtW.QVBoxLayout()
+        self.main_layout = QtW.QVBoxLayout()
+        self.header_layout = QtW.QHBoxLayout()
+        self.welcome_layout = QtW.QVBoxLayout()
         button_layout = QtW.QHBoxLayout()
         project_layout = QtW.QVBoxLayout()
 
@@ -41,14 +55,14 @@ class MainWindow(QtW.QMainWindow):
         label_project = QtW.QLabel("Projects")
         label_project.setStyleSheet("font-size: 20px; color: white; font-weight: bold; font-family: Segoe UI ")
         label_logo2 = QtW.QLabel()
-        pixmap = QtG.QPixmap("logo.jpg")
+        pixmap = QtG.QPixmap("Sources/Assets/logo.jpg")
         label_logo2.setPixmap(pixmap)
         pixmap_redim = pixmap.scaled(13, 13, QtC.Qt.KeepAspectRatio, QtC.Qt.SmoothTransformation)
         label_logo2.setPixmap(pixmap_redim)
-        line = QtW.QFrame()
+        self.line = QtW.QFrame()
         linedown = QtW.QFrame()
-        line.setFrameShape(QtW.QFrame.HLine)
-        line.setStyleSheet(""" QFrame {
+        self.line.setFrameShape(QtW.QFrame.HLine)
+        self.line.setStyleSheet(""" QFrame {
         color: #C1BFB1;  
         border: none;
         background-color: #C1BFB1;
@@ -72,7 +86,12 @@ class MainWindow(QtW.QMainWindow):
         font-size: 16px;             /* taille du texte */
         font-weight: bold; 
         font-family: Segoe UI
-        }""") 
+        }
+        QPushButton:hover{
+                background-color: #505050;
+        }QPushButton:pressed{
+                background-color: #007acc;
+         }""") 
         self.button_3d.setGraphicsEffect(ombre)
         self.button_3d.clicked.connect(self.open_3d_mode) # permet de rendre le bouton clickable et le connecter a une fonction
         
@@ -86,55 +105,60 @@ class MainWindow(QtW.QMainWindow):
         font-size: 16px;             /* taille du texte */
         font-weight: bold; 
         font-family: Segoe UI
-        }""") 
+        }
+        QPushButton:hover{
+                background-color: #505050;
+            }
+        QPushButton:pressed{
+                background-color: #007acc;
+            }""") 
         self.button_2d.setGraphicsEffect(ombre)
         self.button_2d.clicked.connect(self.open_2d_mode)
 
         # structuration du visuelle 
-        self.setCentralWidget(Main_Widget)
         self.setStyleSheet("background-color: #121212;")
-        header_layout.addWidget(label_logo2)
-        header_layout.addWidget(label_logo)
-        header_layout.addStretch()
-        main_layout.addLayout(header_layout)
-        main_layout.addWidget(line)
-        main_layout.addStretch()
-        welcome_layout.addWidget(label_welcome)
-        welcome_layout.addWidget(label_slogan)
-        welcome_layout.setAlignment(QtC.Qt.AlignCenter)
-        welcome_layout.addStretch()
-        main_layout.addLayout(welcome_layout)
+        self.header_layout.addWidget(label_logo2)
+        self.header_layout.addWidget(label_logo)
+        self.header_layout.addStretch()
+        self.main_layout.addLayout(self.header_layout)
+        self.main_layout.addWidget(self.line)
+        self.main_layout.addStretch()
+        self.welcome_layout.addWidget(label_welcome)
+        self.welcome_layout.addWidget(label_slogan)
+        self.welcome_layout.setAlignment(QtC.Qt.AlignCenter)
+        self.welcome_layout.addStretch()
+        self.main_layout.addLayout(self.welcome_layout)
         button_layout.addWidget(self.button_2d)
         button_layout.addWidget(self.button_3d)
         button_layout.setAlignment(QtC.Qt.AlignCenter)
-        main_layout.addStretch()  
-        main_layout.addLayout(button_layout)
-        main_layout.addStretch() 
+        self.main_layout.addStretch()  
+        self.main_layout.addLayout(button_layout)
+        self.main_layout.addStretch() 
         project_layout.addWidget(label_project)
-        main_layout.addLayout(project_layout)
-        main_layout.addWidget(linedown)
-        main_layout.addStretch()
-        main_layout.addStretch()
-        main_layout.addStretch()
-        main_layout.addStretch()
-        main_layout.addStretch()
-        main_layout.addStretch()
-        main_layout.addStretch()
-        Main_Widget.setLayout(main_layout)
+        self.main_layout.addLayout(project_layout)
+        self.main_layout.addWidget(linedown)
+        self.main_layout.addStretch()
+        self.main_layout.addStretch()
+        self.main_layout.addStretch()
+        self.main_layout.addStretch()
+        self.main_layout.addStretch()
+        self.main_layout.addStretch()
+        self.main_layout.addStretch()
+        self.home_page.setLayout(self.main_layout)
+        self.stack.setCurrentWidget(self.home_page)
+
     def open_2d_mode(self):
          print("mode 2D ouvert")
+         self.stack.setCurrentWidget(self.drawing2d_page)
 
     def open_3d_mode(self):
-        print("mode 3D ouvert")
+         print("mode 3D ouvert")
+         self.stack.setCurrentWidget(self.drawing3d_page)
 
 
         
         
 
-app = QtW.QApplication([])
-window = MainWindow()
-window.show()
-app.exec()
 
 
 
