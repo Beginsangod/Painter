@@ -15,7 +15,7 @@ class Painter2D(QMainWindow):
         self.main_window = main_window #ici passage par reference
         self.setWindowTitle("Painter")
         self.resize(900,600)
-        self.setWindowIcon(QIcon("Sources/Assets/favicon.ico"))
+        self.setWindowIcon(QIcon("Sources/Assets/logo.ico"))
 
         #Declaration fenetre principale 
         painter2d = QWidget()

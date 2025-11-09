@@ -14,8 +14,8 @@ class Menu(QWidget):
 
         #Nom app et Logo
         logo = QLabel()
-        pixmap = QPixmap("Sources/Assets/logo.jpg")
-        pixmap_redim = pixmap.scaled(20, 20, Qt.KeepAspectRatio, Qt.SmoothTransformation)
+        pixmap = QPixmap("Sources/Assets/logo2.png")
+        pixmap_redim = pixmap.scaled(50, 50, Qt.KeepAspectRatio, Qt.SmoothTransformation)
         logo.setPixmap(pixmap_redim)
         label_logo = QLabel("Painter")
         label_logo.setStyleSheet("font-size: 12px; color: white; font-weight: bold; font-family: Segoe UI ;background-color: #1e1e1e")
