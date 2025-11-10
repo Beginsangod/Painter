@@ -14,8 +14,8 @@ class Menu(QWidget):
 
         #Nom app et Logo
         logo = QLabel()
-        pixmap = QPixmap("Sources/Assets/logo.jpg")
-        pixmap_redim = pixmap.scaled(20, 20, Qt.KeepAspectRatio, Qt.SmoothTransformation)
+        pixmap = QPixmap("Sources/Assets/logo2.png")
+        pixmap_redim = pixmap.scaled(50, 50, Qt.KeepAspectRatio, Qt.SmoothTransformation)
         logo.setPixmap(pixmap_redim)
         label_logo = QLabel("Painter")
         label_logo.setStyleSheet("font-size: 12px; color: white; font-weight: bold; font-family: Segoe UI ;background-color: #1e1e1e")
@@ -26,7 +26,7 @@ class Menu(QWidget):
         save_button = QPushButton("Save")
 
         self.mode_2d_bt = QPushButton("2D")
-        self.mode_2d_bt.clicked.connect(lambda: self.switch_mode("2D"))
+        self.mode_2d_bt.clicked.connect(lambda: self.switch_mode("2D"))#rendre les boutons clickable
         self.mode_3d_bt = QPushButton("3D")
         self.mode_3d_bt.clicked.connect(lambda: self.switch_mode("3D"))
         

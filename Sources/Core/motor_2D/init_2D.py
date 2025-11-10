@@ -15,7 +15,7 @@ class Painter2D(QMainWindow):
         self.main_window = main_window #ici passage par reference
         self.setWindowTitle("Painter")
         self.resize(900,600)
-        self.setWindowIcon(QIcon("Sources/Assets/favicon.ico"))
+        self.setWindowIcon(QIcon("Sources/Assets/logo.ico"))
 
         #Declaration fenetre principale 
         painter2d = QWidget()
@@ -31,11 +31,11 @@ class Painter2D(QMainWindow):
         work_space_layout.setContentsMargins(0, 0, 0, 0)
         work_space_layout.setSpacing(10)
 
-        tools = ToolBar(mode_)
-        drawing_area = DrawingArea() 
-
-        work_space_layout.addWidget(tools)
-        work_space_layout.addWidget(drawing_area, 1)  # 1 = étirable
+        self.drawing_area = DrawingArea() 
+        self.tools = ToolBar(self.drawing_area,mode_)
+        
+        work_space_layout.addWidget(self.tools)
+        work_space_layout.addWidget(self.drawing_area, 1)  # 1 = étirable
         work_space.setLayout(work_space_layout)
 
         container.addWidget(menu)
