@@ -1,17 +1,64 @@
-import sys
+import pygame
+from pygame.locals import *
 from OpenGL.GL import *
-from OpenGL.GL.shaders import compileProgram, compileShader
-from PyQt6.QtWidgets import QApplication, QOpenGLWidget 
-from PyQt6.QtCore import QTimer
-import numpy as np
+from OpenGL.GLU import *
+import math
 
-#shader de sommets
+# Sommets du cube
+vertices = [
+    [1, 1, -1],
+    [1, -1, -1],
+    [-1, -1, -1],
+    [-1, 1, -1],
+    [1, 1, 1],
+    [1, -1, 1],
+    [-1, -1, 1],
+    [-1, 1, 1]
+]
 
-vertex_shader = """
-in vec2 position;
-void main(){
-    gl_Position  = vec4(position, 1.0f , 0.5f)
-}
-"""
+# Arêtes reliant les sommets
+edges = [
+    (0, 1), (1, 2), (2, 3), (3, 0),
+    (4, 5), (5, 6), (6, 7), (7, 4),
+    (0, 4), (1, 5), (2, 6), (3, 7)
+]
 
-#shader de couleurs
+def draw_cube():
+    glBegin(GL_LINES)
+    for edge in edges:
+        for vertex in edge:
+            glVertex3fv(vertices[vertex])
+    glEnd()
+
+def main():
+    pygame.init()
+    display = (800, 600)
+    pygame.display.set_mode(display, DOUBLEBUF | OPENGL)
+
+    gluPerspective(45, display[0] / display[1], 0.1, 50.0)
+    glTranslatef(0.0, 0.0, -5)
+
+    angle = 0
+
+    running = True
+    while running:
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                running = False
+
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
+
+        glPushMatrix()
+        glRotatef(angle, 1, 1, 0)  # Rotation sur X et Y
+        draw_cube()
+        glPopMatrix()
+
+        angle += 1  # Vitesse de rotation
+
+        pygame.display.flip()
+        pygame.time.wait(10)
+
+    pygame.quit()
+
+if __name__ == "__main__":
+    main()
