@@ -18,7 +18,6 @@ from .GLDepthItem import GLDepthItem
 
 from .MeshData import *
 from .light import *
-from .texture import Texture2D
 from .BufferObject import VAO, VBO, EBO
 from .shader import Shader
 

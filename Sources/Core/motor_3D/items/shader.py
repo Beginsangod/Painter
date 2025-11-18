@@ -2,7 +2,7 @@ import OpenGL.GL as gl
 from OpenGL.GL import shaders
 import numpy as np
 import os
-from .texture import Texture2D
+
 
 __all__ = ['Shader']
 
@@ -53,9 +53,7 @@ class Shader:
     def unuse(self):
         self._in_use = False
         gl.glUseProgram(0)
-        # clear used texture unit, so that other shader can use it.
-        Texture2D.UnitCnt = 0
-
+        
     def __enter__(self):
         self.use()
 
